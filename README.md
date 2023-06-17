@@ -18,7 +18,13 @@ Anomaly detection in multivariate time series is a hot-topic in deep learning. t
 The paper is divided into three sections, data normalization, temporal correlation, and spatial correlation 
 
 # 2.1.1 Data Normalization
-Traditionally; in normalization procedures test, validation and training datas should all be normalized before sending it into network. This paper also adopts this technique 
+Traditionally; in normalization procedures test, validation and training datas should all be normalized before sending it into network. This paper also adopts this technique using mean as 0 and variance as 1, but only in training and validation sets. The procedure for test set is entirely different. In test set we update our mean and variance using previous mean and variances, This allows us to avoid the phenomenon known as concept drifting. Concept drifting refers to the phenomenon in data science where the statistical properties of a target variable or the relationships between features and the target variable change over time, which may cause huge distortions in our anomaly prediction platform , we might take anomalies as usual data because of it or vice versa. 
+
+![image](https://github.com/Batucan2601/MARINA/assets/52931384/b59a8894-b9bf-46e0-af97-3e7eaffc6fd8)
+
+In order to avoid this we use the following formulas in acquiring the next mean and next variances over time. 
+
+![image](https://github.com/Batucan2601/MARINA/assets/52931384/7af2858a-1837-4919-98de-f6e670ee4a04)
 
 
 ## 2.2. Our interpretation 
