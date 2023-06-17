@@ -56,8 +56,11 @@ Paper also uses a final outut reshaping module which is a simple MLP used in ord
 # Loss
 Paper suggests using the frobenius norm for loss. Frobenius norm is basically the L2 norm which corresponds to the lenght of the vector. Therefore Frobenius Loss is the length of the difference of two vectors. Paper suggests using a threshold for this loss; if the threshold is exceeded model informs that this data is an anomaly.  
 ## 2.2. Our interpretation 
-In terms of dat 
-
+- The threshold for frobenius norm has not been specified therefore we tried many random thresholds for best performence. Best is around 1.85.
+- We followed every constant given by paper for anomaly detection. The window length is 100; number of elements to predict in future is 1. Alpha used in normalization is 0.1 and so on.
+- We moved the windows with interval of 5 rather than traditional 1 for testing.
+- We could only test the dataset of SMAP.
+- We did not used CUDA for training. It is not mentioned in the paper but looking at the time statistic it seems the authors also have not used CUDA support. Therefore in order to get the most similar result we also have not used it.
 # 3. Experiments and results
 
 ## 3.1. Experimental setup
