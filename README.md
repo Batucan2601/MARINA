@@ -50,10 +50,13 @@ Each row of the output of Temporal correlation module has been used as a vertex;
 
 where X_O is the output from temporal module; Q, K, V are query, key and values in this self attention model respectively. 
 
+# 2.1.4 Output Reshaping Module
+Paper also uses a final outut reshaping module which is a simple MLP used in order to change the dimension of output
 
+# Loss
+Paper suggests using the frobenius norm for loss. Frobenius norm is basically the L2 norm which corresponds to the lenght of the vector. Therefore Frobenius Loss is the length of the difference of two vectors. Paper suggests using a threshold for this loss; if the threshold is exceeded model informs that this data is an anomaly.  
 ## 2.2. Our interpretation 
-
-@TODO: Explain the parts that were not clearly explained in the original paper and how you interpreted them.
+In terms of dat 
 
 # 3. Experiments and results
 
