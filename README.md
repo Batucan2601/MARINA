@@ -26,6 +26,20 @@ In order to avoid this we use the following formulas in acquiring the next mean 
 
 ![image](https://github.com/Batucan2601/MARINA/assets/52931384/7af2858a-1837-4919-98de-f6e670ee4a04)
 
+Where E(x) is the expected value and  alpha is the weight coefficient. As you can see the mean and variance relies on their previou iterations.
+
+# 2.1.2 Temporal Correlation Module
+This module uses the correlation between historical and future points. This module uses a window of size n  where with n data it tries to predict the future j points. This module uses a total of K MLP blocks, where each MLP block is also consisting of an Innput subblock, cascading subblock and a forecasting subblock .
+
+![image](https://github.com/Batucan2601/MARINA/assets/52931384/09cf59ea-4342-4a61-ba97-15d218cfa097)
+
+The relation between those three blocks and MLP block is as follows
+
+![image](https://github.com/Batucan2601/MARINA/assets/52931384/8e5fe23d-4a6c-4a8b-930e-5a6bb45ec4bc)
+
+where X_I is the input subblock X_F is the forecasting subblock and X_C is the cascading subblock. X_O represents the output that is leaving the MLP block. 
+
+
 
 ## 2.2. Our interpretation 
 
