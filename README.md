@@ -1,4 +1,4 @@
-# Paper title [MARINA: An MLP-Attention Model for Multivariate Time-Series Analysis]
+# MARINA: An MLP-Attention Model for Multivariate Time-Series Analysis
 
 This readme file is an outcome of the [CENG502 (Spring 2023)](https://ceng.metu.edu.tr/~skalkan/ADL/) project for reproducing a paper without an implementation. See [CENG502 (Spring 20223) Project List](https://github.com/CENG502-Projects/CENG502-Spring2023) for a complete list of all paper reproduction projects.
 
@@ -9,13 +9,17 @@ and see the result for ourselves
 
 ## 1.1. Paper summary
 
-Anomaly detection in multivariate time series is a hot-topic in deep learning. this paper proposes a unique idea in terms of data normalization. Rather than using static mean and variance which is done in similiar papers, This paper suggests a dynamic method of normalization in test set which increases mdel's performence overall. Combining this with spatial correlation and temporal correlation methods gives top notch performence
+Anomaly detection in multivariate time series is a hot-topic in deep learning. this paper proposes a unique idea in terms of data normalization. Rather than using static mean and variance which is done in similiar papers, This paper suggests a dynamic method of normalization in test set which increases mdel's performence overall. Combining this with spatial correlation and temporal correlation methods gives top notch performence on time series anomly detection. 
 
 # 2. The method and my interpretation
 
 ## 2.1. The original method
 
-@TODO: Explain the original method.
+The paper is divided into three sections, data normalization, temporal correlation, and spatial correlation 
+
+# 2.1.1 Data Normalization
+Traditionally; in normalization procedures test, validation and training datas should all be normalized before sending it into network. This paper also adopts this technique 
+
 
 ## 2.2. Our interpretation 
 
