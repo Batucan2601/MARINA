@@ -29,7 +29,8 @@ In order to avoid this we use the following formulas in acquiring the next mean 
 Where E(x) is the expected value and  alpha is the weight coefficient. As you can see the mean and variance relies on their previou iterations.
 
 # 2.1.2 Temporal Correlation Module
-This module uses the correlation between historical and future points. This module uses a window of size n  where with n data it tries to predict the future j points. This module uses a total of K MLP blocks, where each MLP block is also consisting of an Innput subblock, cascading subblock and a forecasting subblock .
+This module uses the correlation between historical and future points. Paper suggests that using simple MLP blocks rather than using complex architectures such as Transformers etc. gives both better computation speed and better accuracy in the end, therefore spatial module uses only MLP blocks and no other structure.
+This module uses a window of size n  where with n data it tries to predict the future j points. This module uses a total of K MLP blocks, where each MLP block is also consisting of an Input subblock, cascading subblock and a forecasting subblock, which are also consisting of multi layer perceptron.
 
 ![image](https://github.com/Batucan2601/MARINA/assets/52931384/09cf59ea-4342-4a61-ba97-15d218cfa097)
 
@@ -37,8 +38,17 @@ The relation between those three blocks and MLP block is as follows
 
 ![image](https://github.com/Batucan2601/MARINA/assets/52931384/8e5fe23d-4a6c-4a8b-930e-5a6bb45ec4bc)
 
-where X_I is the input subblock X_F is the forecasting subblock and X_C is the cascading subblock. X_O represents the output that is leaving the MLP block. 
+where X_I is the input subblock X_F is the forecasting subblock and X_C is the cascading subblock. X_O represents the output that is leaving the MLP block.
+Paper suggests using 2 MLP block is enough for anomaly detection, therefore we used 2. 
 
+# 2.1.3 Spatial Correlation Module
+
+Spatial module works on each of the time-series separately therefore does not exploit the features of time based data like temporal correlation module. In order to extract the features between the elements in a time series data, paper suggests using multi head self attention mechanism in order to imitate graph neural netowrks which is a popular solution for this problem.
+Each row of the output of Temporal correlation module has been used as a vertex; and the message passing is done via following
+
+![image](https://github.com/Batucan2601/MARINA/assets/52931384/d986a80a-fb0b-4621-b783-79964c1f112c)
+
+where X_O is the output from temporal module; Q, K, V are query, key and values in this self attention model respectively. 
 
 
 ## 2.2. Our interpretation 
