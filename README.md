@@ -17,7 +17,7 @@ Anomaly detection in multivariate time series is a hot-topic in deep learning. t
 
 The paper is divided into three sections, data normalization, temporal correlation, and spatial correlation 
 
-# 2.1.1 Data Normalization
+### 2.1.1 Data Normalization
 Traditionally; in normalization procedures test, validation and training datas should all be normalized before sending it into network. This paper also adopts this technique using mean as 0 and variance as 1, but only in training and validation sets. The procedure for test set is entirely different. In test set we update our mean and variance using previous mean and variances, This allows us to avoid the phenomenon known as concept drifting. Concept drifting refers to the phenomenon in data science where the statistical properties of a target variable or the relationships between features and the target variable change over time, which may cause huge distortions in our anomaly prediction platform , we might take anomalies as usual data because of it or vice versa. 
 
 <p align="center">
@@ -40,7 +40,7 @@ $\sigma_i^2 = (1-\alpha) \sigma_{i-1}^2 + \alpha (E(x_i^2) - E(x_i)^2)$
 
 Where $E(x)$ is the expected value and  alpha is the weight coefficient. As you can see the mean and variance relies on their previou iterations.
 
-# 2.1.2 Temporal Correlation Module
+### 2.1.2 Temporal Correlation Module
 This module uses the correlation between historical and future points. Paper suggests that using simple MLP blocks rather than using complex architectures such as Transformers etc. gives both better computation speed and better accuracy in the end, therefore spatial module uses only MLP blocks and no other structure.
 This module uses a window of size $n$  where with $n$ data it tries to predict the future $\eta$ points. This module uses a total of $K$ MLP blocks, where each MLP block is also consisting of an Input subblock, cascading subblock and a forecasting subblock, which are also consisting of multi layer perceptron.
 <p align="center">
@@ -61,7 +61,7 @@ $X_{O}^{temp} = \sum\limits_{k=1}^{K} X_{k,F}^{temp}$
 where $X_I$ is the input subblock $X_F$ is the forecasting subblock and $X_C$ is the cascading subblock. $X_O$ represents the output that is leaving the MLP block.
 Paper suggests using 2 MLP block is enough for anomaly detection, therefore we used 2. 
 
-# 2.1.3 Spatial Correlation Module
+### 2.1.3 Spatial Correlation Module
 
 Spatial module works on each of the time-series separately therefore does not exploit the features of time based data like temporal correlation module. In order to extract the features between the elements in a time series data, paper suggests using multi head self attention mechanism in order to imitate graph neural netowrks which is a popular solution for this problem.
 Each row of the output of Temporal correlation module has been used as a vertex; and the message passing is done via following
@@ -74,10 +74,10 @@ $X_{O}^{spat} = FFN(X_{Int}^{spat})$
 
 where $X_O$ is the output from temporal module; $Q$, $K$, $V$ are query, key and values in this self attention model respectively. 
 
-# 2.1.4 Output Reshaping Module
+### 2.1.4 Output Reshaping Module
 Paper also uses a final outut reshaping module which is a simple MLP used in order to change the dimension of output
 
-# Loss
+### Loss
 Paper suggests using the frobenius norm for loss. Frobenius norm is basically the L2 norm which corresponds to the lenght of the vector. Therefore Frobenius Loss is the length of the difference of two vectors. Paper suggests using a threshold for this loss; if the threshold is exceeded model informs that this data is an anomaly.  
 ## 2.2. Our interpretation 
 - The threshold for frobenius norm has not been specified therefore we tried many random thresholds for best performence. Best is around 1.85.
