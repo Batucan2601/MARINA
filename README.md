@@ -4,7 +4,7 @@ This readme file is an outcome of the [CENG502 (Spring 2023)](https://ceng.metu.
 
 # 1. Introduction
 
-he paper is published for CIKM 2022. The goal of the paper is to achieve better accuracies in multivarite time series anomaly detection.  Our goal was to train the model suggested in the paper 
+The paper is published for CIKM 2022. The goal of the paper is to achieve better accuracies in multivarite time series anomaly detection.  Our goal was to train the model suggested in the paper 
 and see the result for ourselves
 
 ## 1.1. Paper summary
