@@ -146,8 +146,40 @@ Directory structure:
 
 
 ## 3.3. Results
+### 3.3.1 Long Sequence Forceasting
+In this section, they implement the model for forecasting target. 
+#### 3.3.1.1 Results on ETTh1
+We created the model and trained the model with 30 epochs as mentioned in the paper. Then we used *optuna* for optimizing the hyperparameters such as layer numbers and batch sizes. Here the loss curves can be seen in the below figure.
 
-### 3.3.1 Results on SMAP
+<p align="center"> 
+  <img src="https://github.com/Batucan2601/MARINA/assets/88089192/d0fcb565-de5c-4329-8a5c-4b368742cf43" alt="windowed_image">
+  <br>
+  <em>Figure 5: Training and validation loss for Etth1 dataset </em>
+</p>
+
+Then we calculated the MSE and MAE loss values for this dataset with the model. The results can be seen in the table below.
+
+<p align="center"> 
+  <img src="https://github.com/Batucan2601/MARINA/assets/88089192/adfb4343-8749-447d-bc66-3f2a1eba0287" alt="windowed_image">
+  <br>
+  <em>Table 1: Metric scores for different models and ours for Etth1 dataset </em>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### 3.3.1.2 Results on SMAP
   The following chart shows the start and end sequences of anomalies in SMAP's first five entries.
   
 <p align="center"> 
