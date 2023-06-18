@@ -72,7 +72,7 @@ $X_{Int}^{Spat} = MultiHeadAttention(Q,K,V),$ <br>
 $X_{O}^{spat} = FFN(X_{Int}^{spat})$
 </p>
 
-where $X_O$ is the output from temporal module; $Q$, $K$, $V$ are query, key and values in this self attention model respectively. 
+where $X_O$ is the output from temporal module; $Q$, $K$, $V$ are query, key and values in this self attention model respectively; and FFN stands for Feed Forward neural network. 
 
 ### 2.1.4 Output Reshaping Module
 Paper also uses a final outut reshaping module which is a simple MLP used in order to change the dimension of output
