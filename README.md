@@ -93,13 +93,13 @@ $$
 B = T - \eta + 1
 $$
 
-where $B$ represents the number of targets, $T$ denotes the sequence length, and $\eta$ signifies the number of predicted points, it becomes evident that these windows should indeed overlap. To address this requirement, we have implemented a function called windowed_Set. This function accepts the following input parameters: original_data, window_size, shifting, and horizon. By utilizing the windowed_Set function, one can manipulate the data in the following manner:
+where $B$ represents the number of targets, $T$ denotes the sequence length, and $\eta$ signifies the number of predicted points, it becomes evident that these windows should indeed overlap. To address this requirement, we have implemented a function called ```windowed_Set()```. This function accepts the following input parameters: original_data, window_size, shifting, and horizon. By utilizing the windowed_Set function, one can manipulate the data in the following manner:
 
-*windows_size* : Determine the desired length of the window.
+```windows_size``` : Determine the desired length of the window.
 
-*shifting*     : Specify the number of jumps for the window, akin to the *stride* value used in convolution.
+```shifting```     : Specify the number of jumps for the window, akin to the *stride* value used in convolution.
 
-*horizon*      :  Indicate the number of predicted points within the upcoming windows.
+```horizon```      :  Indicate the number of predicted points within the upcoming windows.
 
 The illustration for this function and handling behavior can be seen in the Figure 1 below.
 
