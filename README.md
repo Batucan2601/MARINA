@@ -117,8 +117,21 @@ The illustration for this function and handling behavior can be seen in the Figu
 @TODO: Describe the setup of the original paper and whether you changed any settings.
 
 ## 3.2. Running the code
+Directory structure:
 
-@TODO: Explain your code & directory structure and how other people can run it.
+```bash
+├── SMAP MSL/
+│   ├── data/data
+│   │       ├── 2018-05-19_15.00.10/
+│   │       │   test/
+│   │       │   train/
+│   └── labeled_anomalies.csv
+├── Marina.ipynb
+├── README.md
+└── marina.pdf
+```
+- One should use ```Marina.ipynb``` for training and testing the data. 
+
 
 ## 3.3. Results
 
@@ -130,8 +143,11 @@ The illustration for this function and handling behavior can be seen in the Figu
 
 # 5. References
 
-@TODO: Provide your references here.
+[1] Original paper: Xie, J., Cui, Y., Huang, F., Liu, C., Zheng, K. (2022). MARINA: An MLP-Attention Model for Multivariate Time-Series Analysis. In Proceedings of the CIKM Conference on Information and Knowledge Management.
+
 
 # Contact
 
-@TODO: Provide your names & email addresses and any other info with which people can contact you.
+Furkan Bahçeli, furkan.bahceli@metu.edu.tr
+
+Batuhan Tosyalı, batuhan.tosyali@metu.edu.tr
