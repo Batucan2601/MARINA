@@ -114,7 +114,14 @@ The illustration for this function and handling behavior can be seen in the Figu
 
 ## 3.1. Experimental setup
 
-@TODO: Describe the setup of the original paper and whether you changed any settings.
+With each iteration paper suggests using a window of data ( where window length is 100 in this case ), and iterate the data in training by 1. Because of the performence issues we shifted the 
+window by 5 rather than 1. After this we put our data into our temporal correlation module with MLPs. Since we used pytorch this was an easy process; and we completely implemented what paper was 
+suggesting. Following temporal correlation, we put our outpur of datas into spatial correlation module; which is also fully implementable on pytorch therefore there is not any changes with the setup given in the paper. After this process we simpply used an output moduel which is basically a MLP module which is also implemented without problems. All of the setup requirements for neural 
+networks are given in the following figure. 
+
+![image](https://github.com/Batucan2601/MARINA/assets/52931384/a4fea3d8-a23d-463a-85be-436c1a8dd5cd)
+
+For tests we used Frobenius norm (L2 norm) as suggested without any changes.
 
 ## 3.2. Running the code
 Directory structure:
