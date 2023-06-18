@@ -26,11 +26,11 @@ In order to avoid this we use the following formulas in acquiring the next mean 
 
 ![image](https://github.com/Batucan2601/MARINA/assets/52931384/7af2858a-1837-4919-98de-f6e670ee4a04)
 
-Where E(x) is the expected value and  alpha is the weight coefficient. As you can see the mean and variance relies on their previou iterations.
+Where $E(x)$ is the expected value and  alpha is the weight coefficient. As you can see the mean and variance relies on their previou iterations.
 
 # 2.1.2 Temporal Correlation Module
 This module uses the correlation between historical and future points. Paper suggests that using simple MLP blocks rather than using complex architectures such as Transformers etc. gives both better computation speed and better accuracy in the end, therefore spatial module uses only MLP blocks and no other structure.
-This module uses a window of size n  where with n data it tries to predict the future j points. This module uses a total of K MLP blocks, where each MLP block is also consisting of an Input subblock, cascading subblock and a forecasting subblock, which are also consisting of multi layer perceptron.
+This module uses a window of size $n$  where with $n$ data it tries to predict the future $\eta$ points. This module uses a total of $K$ MLP blocks, where each MLP block is also consisting of an Input subblock, cascading subblock and a forecasting subblock, which are also consisting of multi layer perceptron.
 
 ![image](https://github.com/Batucan2601/MARINA/assets/52931384/09cf59ea-4342-4a61-ba97-15d218cfa097)
 
@@ -38,7 +38,7 @@ The relation between those three blocks and MLP block is as follows
 
 ![image](https://github.com/Batucan2601/MARINA/assets/52931384/8e5fe23d-4a6c-4a8b-930e-5a6bb45ec4bc)
 
-where X_I is the input subblock X_F is the forecasting subblock and X_C is the cascading subblock. X_O represents the output that is leaving the MLP block.
+where $X_I$ is the input subblock $X_F$ is the forecasting subblock and $X_C$ is the cascading subblock. $X_O$ represents the output that is leaving the MLP block.
 Paper suggests using 2 MLP block is enough for anomaly detection, therefore we used 2. 
 
 # 2.1.3 Spatial Correlation Module
@@ -48,7 +48,7 @@ Each row of the output of Temporal correlation module has been used as a vertex;
 
 ![image](https://github.com/Batucan2601/MARINA/assets/52931384/d986a80a-fb0b-4621-b783-79964c1f112c)
 
-where X_O is the output from temporal module; Q, K, V are query, key and values in this self attention model respectively. 
+where $X_O$ is the output from temporal module; $Q$, $K$, $V$ are query, key and values in this self attention model respectively. 
 
 # 2.1.4 Output Reshaping Module
 Paper also uses a final outut reshaping module which is a simple MLP used in order to change the dimension of output
@@ -61,6 +61,31 @@ Paper suggests using the frobenius norm for loss. Frobenius norm is basically th
 - We moved the windows with interval of 5 rather than traditional 1 for testing.
 - We could only test the dataset of SMAP.
 - We did not used CUDA for training. It is not mentioned in the paper but looking at the time statistic it seems the authors also have not used CUDA support. Therefore in order to get the most similar result we also have not used it.
+
+### 2.2.1 Splitting data into windows
+In accordance with the findings presented in section 2.1.2, the authors employed a strategy of dividing the dataset into windows. Notably, Figure 4 in the article illustrates that these windows do not overlap. However, when considering the equation provided for calculating the number of targets:
+
+$$
+B = T - \eta + 1
+$$
+
+where $B$ represents the number of targets, $T$ denotes the sequence length, and $\eta$ signifies the number of predicted points, it becomes evident that these windows should indeed overlap. To address this requirement, we have implemented a function called windowed_Set. This function accepts the following input parameters: original_data, window_size, shifting, and horizon. By utilizing the windowed_Set function, one can manipulate the data in the following manner:
+
+*windows_size* : Determine the desired length of the window.
+
+*shifting*     : Specify the number of jumps for the window, akin to the *stride* value used in convolution.
+
+*horizon*      :  Indicate the number of predicted points within the upcoming windows.
+
+The illustration for this function and handling behavior can be seen in the Figure 1 below.
+
+<p align="center"> 
+  <img src="https://github.com/Batucan2601/MARINA/assets/88089192/7fdbb055-b443-40fe-90ee-8a5387f8ee44" alt="windowed_image">
+  <br>
+  <em>Figure 1: Illustration for <i>windowed_Set</i> function.</em>
+</p>
+
+
 # 3. Experiments and results
 
 ## 3.1. Experimental setup
