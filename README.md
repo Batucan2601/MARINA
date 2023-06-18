@@ -125,7 +125,6 @@ networks are given in the following figure.
   <em>Figure 4: The chart for parameters in the neural network </em>
 </p>
 
-![image]()
 
 For tests we used Frobenius norm (L2 norm) as suggested without any changes.
 
@@ -157,6 +156,15 @@ Directory structure:
   <em>Figure 5: The anomaly sequences of SMAP dataset </em>
 </p>
 
+And the following chart shows us the anomaly sequences that are found by our model.
+
+<p align="center"> 
+  <img src="https://github.com/Batucan2601/MARINA/assets/52931384/a54229d0-d526-43ba-9f40-f2847152e17a" alt="windowed_image">
+  <br>
+  <em>Figure 6: The anomaly sequences of our model  </em>
+</p>
+
+As you can see our model's accuracies ranges from 0.2 to 0.6; our mean accuracies 0.4 overall. 
 # 4. Conclusion
 
 @TODO: Discuss the paper in relation to the results in the paper and your results.
