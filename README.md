@@ -122,7 +122,7 @@ networks are given in the following figure.
 <p align="center"> 
   <img src="https://github.com/Batucan2601/MARINA/assets/52931384/a4fea3d8-a23d-463a-85be-436c1a8dd5cd" alt="windowed_image">
   <br>
-  <em>Figure 4: The cchart for parameters in the neural network </em>
+  <em>Figure 4: The chart for parameters in the neural network </em>
 </p>
 
 ![image]()
