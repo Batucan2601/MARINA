@@ -159,7 +159,7 @@ Directory structure:
 And the following chart shows us the anomaly sequences that are found by our model.
 
 <p align="center"> 
-  <img src="https://github.com/Batucan2601/MARINA/assets/52931384/a54229d0-d526-43ba-9f40-f2847152e17a" alt="windowed_image">
+  <img src="https://github.com/Batucan2601/MARINA/assets/52931384/d93044e6-8685-480d-8345-c7683fdcac42" alt="windowed_image">
   <br>
   <em>Figure 6: The anomaly sequences of our model  </em>
 </p>
