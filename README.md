@@ -148,7 +148,14 @@ Directory structure:
 
 ## 3.3. Results
 
-@TODO: Present your results and compare them to the original paper. Please number your figures & tables as if this is a paper.
+### 3.3.1 Results on SMAP
+  The following chart shows the start and end sequences of anomalies in SMAP's first five entries.
+  
+<p align="center"> 
+  <img src="https://github.com/Batucan2601/MARINA/assets/52931384/0ce06ec2-bad6-4f4d-8e2f-e1ae2c07f910" alt="windowed_image">
+  <br>
+  <em>Figure 5: The anomaly sequences of SMAP dataset </em>
+</p>
 
 # 4. Conclusion
 
