@@ -106,7 +106,7 @@ The illustration for this function and handling behavior can be seen in the Figu
 <p align="center"> 
   <img src="https://github.com/Batucan2601/MARINA/assets/88089192/7fdbb055-b443-40fe-90ee-8a5387f8ee44" alt="windowed_image">
   <br>
-  <em>Figure 1: Illustration for <i>windowed_Set</i> function.</em>
+  <em>Figure 3: Illustration for <i>windowed_Set</i> function.</em>
 </p>
 
 
@@ -119,7 +119,13 @@ window by 5 rather than 1. After this we put our data into our temporal correlat
 suggesting. Following temporal correlation, we put our outpur of datas into spatial correlation module; which is also fully implementable on pytorch therefore there is not any changes with the setup given in the paper. After this process we simpply used an output moduel which is basically a MLP module which is also implemented without problems. All of the setup requirements for neural 
 networks are given in the following figure. 
 
-![image](https://github.com/Batucan2601/MARINA/assets/52931384/a4fea3d8-a23d-463a-85be-436c1a8dd5cd)
+<p align="center"> 
+  <img src="https://github.com/Batucan2601/MARINA/assets/52931384/a4fea3d8-a23d-463a-85be-436c1a8dd5cd" alt="windowed_image">
+  <br>
+  <em>Figure 4: The cchart for parameters in the neural network </em>
+</p>
+
+![image]()
 
 For tests we used Frobenius norm (L2 norm) as suggested without any changes.
 
