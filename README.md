@@ -20,23 +20,43 @@ The paper is divided into three sections, data normalization, temporal correlati
 # 2.1.1 Data Normalization
 Traditionally; in normalization procedures test, validation and training datas should all be normalized before sending it into network. This paper also adopts this technique using mean as 0 and variance as 1, but only in training and validation sets. The procedure for test set is entirely different. In test set we update our mean and variance using previous mean and variances, This allows us to avoid the phenomenon known as concept drifting. Concept drifting refers to the phenomenon in data science where the statistical properties of a target variable or the relationships between features and the target variable change over time, which may cause huge distortions in our anomaly prediction platform , we might take anomalies as usual data because of it or vice versa. 
 
-![image](https://github.com/Batucan2601/MARINA/assets/52931384/b59a8894-b9bf-46e0-af97-3e7eaffc6fd8)
+<p align="center">
+  <img src="https://github.com/Batucan2601/MARINA/assets/88089192/5e7f1a5d-99cf-4102-ba1b-46e86a68dfab" alt="drifting" width="600">
+  <br>
+  <em>Figure 1: Illustration of the concept drifting phenomenon.</em>
+</p>
+
+
 
 In order to avoid this we use the following formulas in acquiring the next mean and next variances over time. 
 
-![image](https://github.com/Batucan2601/MARINA/assets/52931384/7af2858a-1837-4919-98de-f6e670ee4a04)
+<p align="center">
+$\mu_0 = \mu$ <br>
+$\sigma_0 = \sigma$ <br>
+$\mu_i = (1-\alpha)\mu_{i-1} + \alpha E(x_i)$ <br>
+$\sigma_i^2 = (1-\alpha) \sigma_{i-1}^2 + \alpha (E(x_i^2) - E(x_i)^2)$
+
+</p>
 
 Where $E(x)$ is the expected value and  alpha is the weight coefficient. As you can see the mean and variance relies on their previou iterations.
 
 # 2.1.2 Temporal Correlation Module
 This module uses the correlation between historical and future points. Paper suggests that using simple MLP blocks rather than using complex architectures such as Transformers etc. gives both better computation speed and better accuracy in the end, therefore spatial module uses only MLP blocks and no other structure.
 This module uses a window of size $n$  where with $n$ data it tries to predict the future $\eta$ points. This module uses a total of $K$ MLP blocks, where each MLP block is also consisting of an Input subblock, cascading subblock and a forecasting subblock, which are also consisting of multi layer perceptron.
-
-![image](https://github.com/Batucan2601/MARINA/assets/52931384/09cf59ea-4342-4a61-ba97-15d218cfa097)
+<p align="center">
+  <img src="https://github.com/Batucan2601/MARINA/assets/88089192/6d9b016a-d1a2-4752-b42e-8771521e0a02" alt="inputTemporal" width="250">
+  <br>
+  <em>Figure 2: Illustration of the input temporal data.</em>
+</p>
 
 The relation between those three blocks and MLP block is as follows
 
-![image](https://github.com/Batucan2601/MARINA/assets/52931384/8e5fe23d-4a6c-4a8b-930e-5a6bb45ec4bc)
+<p align="center">
+$X_{1,I}^{temp} = X,$ <br>
+$X_{k+1,I}^{temp} = X_{k,I}^{temp} - X_{k,C}^{temp},$ <br>
+$X_{O}^{temp} = \sum\limits_{k=1}^{K} X_{k,F}^{temp}$
+</p>
+
 
 where $X_I$ is the input subblock $X_F$ is the forecasting subblock and $X_C$ is the cascading subblock. $X_O$ represents the output that is leaving the MLP block.
 Paper suggests using 2 MLP block is enough for anomaly detection, therefore we used 2. 
@@ -46,7 +66,11 @@ Paper suggests using 2 MLP block is enough for anomaly detection, therefore we u
 Spatial module works on each of the time-series separately therefore does not exploit the features of time based data like temporal correlation module. In order to extract the features between the elements in a time series data, paper suggests using multi head self attention mechanism in order to imitate graph neural netowrks which is a popular solution for this problem.
 Each row of the output of Temporal correlation module has been used as a vertex; and the message passing is done via following
 
-![image](https://github.com/Batucan2601/MARINA/assets/52931384/d986a80a-fb0b-4621-b783-79964c1f112c)
+<p align="center">
+$Q = K = V = X_O^{temp},$ <br>
+$X_{Int}^{Spat} = MultiHeadAttention(Q,K,V),$ <br>
+$X_{O}^{spat} = FFN(X_{Int}^{spat})$
+</p>
 
 where $X_O$ is the output from temporal module; $Q$, $K$, $V$ are query, key and values in this self attention model respectively. 
 
